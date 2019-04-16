@@ -2,6 +2,8 @@
 
 This repository is for the front end client of a team built full-stack javascript application. It features Nozama, a mock e-commerce app. The client relies heavily on Javascript in order to make a seamless representation of browsing for items, adding an item to a cart, checking out (utilizing a third party API 'Stripe'), and looking at previous order history.
 
+This is an unedited clone of the group/team project at General Assembly.
+
 ## TECHNOLOGIES IN USE
 
 - JavaScript
