@@ -6,7 +6,7 @@ const store = require('../store')
 const cartEvents = require('../cart/events')
 
 const checkoutHandler = StripeCheckout.configure({
-  key: 'pk_test_Ba2NFx0UbzDjWo1LB87WJXYN',
+  key: 'pk_test_V9DZfPXiW4nqdR9oNfPnadOI00Irg6vT5s',
   locale: 'auto'
 })
 
