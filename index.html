@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Nozama</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- Do not add `link` tags-->
+      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+      <link href="https://fonts.googleapis.com/css?family=Rakkas" rel="stylesheet">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+      <!-- Do not add `script` tags-->
+      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+      <script src="https://checkout.stripe.com/checkout.js"></script>
+    </head>
+    <body>
+
+      <!--nav bar-->
+      <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Nozama</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active" id='action-list'>
+              <button id="sidebar" class="btn btn-primary" onclick="openNav()"><i class="fas fa-shopping-cart"></i></button>
+              <button class="index btn btn-primary" type="button" id="index-products">
+                Home
+              </button>
+              <button type="button" class="sign-up btn btn-primary" data-toggle="modal" data-target="#signUpModal">
+                Sign Up
+              </button>
+              <button type="button" class="sign-in btn btn-primary" data-toggle="modal" data-target="#signInModal">
+                Sign In
+              </button>
+              <button type="button" class="change-password btn btn-primary" data-toggle="modal" data-target="#changePassModal">
+                Change Password
+              </button>
+              <button class="sign-out btn btn-primary" type="button" id="sign-out">
+                Log Out
+              </button>
+            </li>
+          </ul>
+          <input class="form-inline my-2 mr-sm-2 my-lg-0" type="search" id="search" placeholder="Search" aria-label="Search">
+        </div>
+      </nav>
+
+      <!-- Side bar -->
+      <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a><br><br>
+        <button class="view-cart btn btn-block btn-primary" type="button" id="view-cart">
+          View Cart
+        </button>
+        <!-- <button id="view-cart" class="btn btn-block btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">View Cart</button>
+        <br> -->
+        <button class="checkout btn btn-block btn-primary" type="button" id="checkout">
+          Checkout
+        </button>
+        <button type="button" class="btn btn-block btn-primary index-orders" id="index-orders">
+          Purchase History
+        </button><br>
+        <a id='seed'></a>
+      </div>
+
+      <script>
+      function openNav() {
+        document.getElementById("mySidebar").style.width = "175px";
+      }
+
+      function closeNav() {
+        document.getElementById("mySidebar").style.width = "0";
+      }
+      </script>
+      <div class="container">
+
+      <!-- Carousel Start -->
+      <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="./public/hatnew.png" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h1>NOZAMA</h1>
+              </div>
+          </div>
+          <div class="carousel-item">
+            <img src="./public/hatnew2.png" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h1>NOZAMA</h1>
+              </div>
+          </div>
+          <div class="carousel-item">
+            <img src="./public/hat3.jpg" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h1>NOZAMA</h1>
+              </div>
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+      <!-- Carousel End -->
+
+      <!-- sign up form-->
+
+      <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog"aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div   class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Sign Up</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="sign-up">
+                <label>Enter Email:</label><br>
+                <input type="email" name="credentials[email]" placeholder="Enter email"><br>
+                <label>Enter Password: </label><br>
+                <input type="password" name="credentials[password]" placeholder="Enter password"><br>
+                <label>Confirm Password:</label><br>
+                <input type="password" name="credentials[password_confirmation]" placeholder="Confirm password"><br>
+                <button type="submit">Sign Up</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- sign in form-->
+
+      <div class="modal fade" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Log In</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="sign-in">
+                <label>Enter Email:</label><br />
+                <input type="email" name="credentials[email]" placeholder="Enter email"><br />
+                <label>Enter Password: </label><br />
+                <input type="password" name="credentials[password]" placeholder="Enter password"><br />
+                <button type="submit">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- change password button-->
+      <div class="modal fade" id="changePassModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Change Password</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="change-password">
+                <label>Old Password:</label><br>
+                <input type="password" name="passwords[old]" placeholder="Old password here"><br>
+                <label>New Password: </label><br>
+                <input type="password" name="passwords[new]" placeholder="New password here"><br>
+                <button type="submit">Change password</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- view cart button-->
+      <!-- <button type="button" id="view-cart">
+        View Cart
+      </button> -->
+
+      <!-- view one product button -->
+      <!-- <button type="button" id="show-product">
+        View Product
+      </button> -->
+      <h1 class="quote">"And all your future lies beneath your hat."<br><span class="quote-name">- John Oldham</span></h1>
+<hr>
+      <div id="user-message" role="alert"></div>
+      <section class='row products' id="products">
+
+      </section>
+      <div id="cart"></div>
+      <div id="orders"></div>
+    </div>
+    </body>
+</html>
